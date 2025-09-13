@@ -9,6 +9,7 @@
     xorg.xset
     xbanish
     dunst
+    dmenu-custom
   ];
 
 
