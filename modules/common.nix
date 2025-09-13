@@ -35,6 +35,7 @@
       nh
 
       gh
+      lazygit
     ];
   };
 
