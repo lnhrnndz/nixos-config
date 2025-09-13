@@ -17,6 +17,7 @@
     # Make packages available as overlays
     overlays.default = final: prev: {
       dmenu-custom = self.packages.${system}.dmenu;
+      st-custom = self.packages.${system}.st;
     };
   };
 }

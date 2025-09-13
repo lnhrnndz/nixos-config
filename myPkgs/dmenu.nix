@@ -11,8 +11,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "Lnhrnndz";
     repo = "dmenu";
-    rev = "3f2b554d1564d1b7969254df3235e463ee65542a";
-    sha256 = "1g7pml2j0w8ginad6yj46h9gm84lsyicz306i9407v4pl6221nzg";
+    rev = "v1.1";
+    sha256 = "0khpvgsw1xrwc2rxw1lrrg62hi64haq2zbzgy55hg4d9flpldnr4";
   }; 
 
   buildInputs = [
