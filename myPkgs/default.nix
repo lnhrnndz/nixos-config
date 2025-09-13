@@ -5,5 +5,5 @@ let
 in
 {
   dmenu = pkgs.callPackage ./dmenu.nix { };
-  #st = pkgs.callPackage ./st.nix { };
+  st = pkgs.callPackage ./st.nix { };
 }
