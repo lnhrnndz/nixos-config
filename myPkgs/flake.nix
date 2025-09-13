@@ -11,6 +11,7 @@
   in {
     packages.${system} = {
       dmenu = pkgs.callPackage ./dmenu.nix { };
+      st = pkgs.callPackage ./st.nix { };
       # Add other custom packages here
     };
 

@@ -10,6 +10,7 @@
     xbanish
     dunst
     dmenu-custom
+    st-custom
   ];
 
 
