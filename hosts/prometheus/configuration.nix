@@ -11,7 +11,6 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnsuportedSystem = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
