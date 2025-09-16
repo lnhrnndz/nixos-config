@@ -10,23 +10,26 @@
   };
   
   outputs = { self, nixpkgs, myPkgs, ... }: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { 
-      inherit system; 
-      overlays = [ myPkgs.overlays.default ];
-    };
+    x86_64 = "x86_64-linux";
+    aarch64 = "aarch64-linux";
     in {
     nixosConfigurations = {
       kronos = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
           ./modules/common.nix
           ./modules/laptop.nix
           ./hosts/kronos/configuration.nix
-          # Make custom packages available
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [ myPkgs.overlays.default ];
-          })
+          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
+        ];
+      };
+      prometheus = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./modules/common.nix
+          ./modules/laptop.nix
+          ./hosts/prometheus/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
         ];
       };
     };

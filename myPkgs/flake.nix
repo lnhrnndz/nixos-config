@@ -6,7 +6,7 @@
   };
 
   outputs = { self, nixpkgs }: let
-    system = "x86_64-linux";
+    system = "aarch64-linux"; # TODO: variable architecture
     pkgs = import nixpkgs { inherit system; };
   in {
     packages.${system} = {
