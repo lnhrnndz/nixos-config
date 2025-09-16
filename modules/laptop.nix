@@ -27,7 +27,7 @@
   programs.hyprland.enable = true;
   services.libinput.enable = true;
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "intel" ];
+  #services.xserver.videoDrivers = [ "intel" ];
   services.dbus.enable = true;
   programs.hyprland.xwayland.enable = true; # optional
 
