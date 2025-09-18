@@ -4,6 +4,7 @@ let
   pkgs = import nixpkgs { config = {}; overlays = []; };
 in
 {
+  dwm = pkgs.callPackage ./dwm.nix { };
   dmenu = pkgs.callPackage ./dmenu.nix { };
   st = pkgs.callPackage ./st.nix { };
 }
