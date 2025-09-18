@@ -10,17 +10,17 @@
     pkgs = import nixpkgs { inherit system; };
   in {
     packages.${system} = {
+      st = pkgs.callPackage ./st.nix { };
       dwm = pkgs.callPackage ./dwm.nix { };
       dmenu = pkgs.callPackage ./dmenu.nix { };
-      st = pkgs.callPackage ./st.nix { };
       # Add other custom packages here
     };
 
     # Make packages available as overlays
     overlays.default = final: prev: {
-      dwm-custom = self.packages.${system}.dwm;
-      dmenu-custom = self.packages.${system}.dmenu;
-      st-custom = self.packages.${system}.st;
+      custom-st = self.packages.${system}.st;
+      custom-dwm = self.packages.${system}.dwm;
+      custom-dmenu = self.packages.${system}.dmenu;
     };
   };
 }

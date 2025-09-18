@@ -9,9 +9,9 @@
     xorg.xset
     xbanish
     dunst
-    dwm-custom
-    dmenu-custom
-    st-custom
+    custom-st
+    custom-dwm
+    custom-dmenu
   ];
 
 
