@@ -12,29 +12,23 @@
       neovim
       tmux
       alacritty
-
       kitty
       wofi
       #kdePackages.dolphin
-
       fish
       eza
       bat
-
       fd
       fzf
       ripgrep
-
       gnumake
       stow
       gcc
       nodejs_24
-
-      neofetch
+      lua
       ncdu
+      dua
       nh
-
-      gh
       lazygit
     ];
   };
