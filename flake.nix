@@ -8,39 +8,32 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  
+
   outputs = { self, nixpkgs, myPkgs, ... }: let
-    x86_64 = "x86_64-linux";
-    aarch64 = "aarch64-linux";
-    in {
+    mkHost = system: modules:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = modules ++ [
+          { nixpkgs.overlays = [ myPkgs.overlays.default ]; }
+        ];
+      };
+  in {
     nixosConfigurations = {
-      thethinker = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./modules/common.nix
-          ./modules/server.nix
-          ./hosts/thethinker/configuration.nix
-          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
-        ];
-      };
-      kronos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./modules/common.nix
-          ./modules/laptop.nix
-          ./hosts/kronos/configuration.nix
-          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
-        ];
-      };
-      prometheus = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./modules/common.nix
-          ./modules/laptop.nix
-          ./hosts/prometheus/configuration.nix
-          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
-        ];
-      };
+      thethinker = mkHost "x86_64-linux" [
+        ./hosts/thethinker/configuration.nix
+        ./modules/common.nix
+        ./modules/server.nix
+      ];
+      kronos = mkHost "x86_64-linux" [
+        ./hosts/kronos/configuration.nix
+        ./modules/common.nix
+        ./modules/laptop.nix
+      ];
+      prometheus = mkHost "aarch64-linux" [
+        ./hosts/prometheus/configuration.nix
+        ./modules/common.nix
+        ./modules/laptop.nix
+      ];
     };
   };
 }
