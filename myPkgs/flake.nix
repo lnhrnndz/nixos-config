@@ -1,26 +1,24 @@
 {
   description = "Leon's custom packages";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
   outputs = { self, nixpkgs }: let
-    system = "aarch64-linux"; # TODO: variable architecture
-    pkgs = import nixpkgs { inherit system; };
+    systems = [ "x86_64-linux" "aarch64-linux" ];
+    forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
   in {
-    packages.${system} = {
-      st = pkgs.callPackage ./st.nix { };
-      dwm = pkgs.callPackage ./dwm.nix { };
-      dmenu = pkgs.callPackage ./dmenu.nix { };
-      # Add other custom packages here
-    };
-
-    # Make packages available as overlays
+    packages = forAllSystems (system:
+      let pkgs = import nixpkgs { inherit system; };
+      in {
+        st = pkgs.callPackage ./st.nix { };
+        dwm = pkgs.callPackage ./dwm.nix { };
+        dmenu = pkgs.callPackage ./dmenu.nix { };
+      }
+    );
     overlays.default = final: prev: {
-      custom-st = self.packages.${system}.st;
-      custom-dwm = self.packages.${system}.dwm;
-      custom-dmenu = self.packages.${system}.dmenu;
+      custom-st = final.callPackage ./st.nix { };
+      custom-dwm = final.callPackage ./dwm.nix { };
+      custom-dmenu = final.callPackage ./dmenu.nix { };
     };
   };
 }
