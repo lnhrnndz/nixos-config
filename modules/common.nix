@@ -18,23 +18,33 @@
       fish
       eza
       bat
+      zoxide
+
       fd
       fzf
       ripgrep
+      tree
+
       gnumake
       stow
       gcc
       nodejs_24
       lua
+      python3
+
       ncdu
       dua
       nh
       lazygit
+
+      htop
+      iotop
+      ranger
     ];
   };
 
   environment.systemPackages = with pkgs; [
-    vim git curl wget
+    vim git curl wget unzip
   ];
 
   fonts.packages = with pkgs; [
