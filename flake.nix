@@ -14,6 +14,15 @@
     aarch64 = "aarch64-linux";
     in {
     nixosConfigurations = {
+      thethinker = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./modules/common.nix
+          ./modules/server.nix
+          ./hosts/thethinker/configuration.nix
+          ({ pkgs, ... }: { nixpkgs.overlays = [ myPkgs.overlays.default ]; })
+        ];
+      };
       kronos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
