@@ -12,6 +12,7 @@
       yt-dlp
       sqlite
       ffmpeg
+      cryptsetup
     ];
   };
 
