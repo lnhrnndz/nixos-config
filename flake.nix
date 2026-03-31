@@ -2,7 +2,7 @@
   description = "Leon's NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     myPkgs = {
       url = "path:./myPkgs";
       inputs.nixpkgs.follows = "nixpkgs";
