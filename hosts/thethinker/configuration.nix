@@ -199,8 +199,8 @@
   networking.firewall.enable = true;
   networking.firewall.allowPing = true;
 
-  services.logind.lidSwitch = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
+  services.logind.settings.Login.HandeLidSwitch = "ignore";
+  services.logind.settings.Login.HandeLidSwitchDocked = "ignore";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
