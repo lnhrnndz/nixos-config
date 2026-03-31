@@ -1,7 +1,7 @@
 {
   description = "Leon's custom packages";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs = { self, nixpkgs }: let
     systems = [ "x86_64-linux" "aarch64-linux" ];
