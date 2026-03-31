@@ -40,6 +40,8 @@
       htop
       iotop
       ranger
+
+      opencode
     ];
   };
 
