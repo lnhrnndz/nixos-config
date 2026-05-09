@@ -42,6 +42,7 @@
       ranger
 
       opencode
+      codex
     ];
   };
 
